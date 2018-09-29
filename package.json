@@ -1,0 +1,22 @@
+{
+  "name": "identicon-firefox-addon",
+  "version": "0.0.1",
+  "description": "A firefox addon to display identicons based on the hostname",
+  "dependencies": {
+    "web-ext": "^2.9.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thigg/firefox-url-identicons.git"
+  },
+  "keywords": [
+    "firefox-addon",
+    "identicon"
+  ],
+  "author": "Thilo Kogge",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thigg/firefox-url-identicons/issues"
+  },
+  "homepage": "https://github.com/thigg/firefox-url-identicons#readme"
+}
