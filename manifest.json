@@ -4,16 +4,13 @@
   "manifest_version": 2,
   "name": "button-demo",
   "version": "1.0",
-  "permissions": ["webNavigation", "storage"],
+  "permissions": ["webNavigation", "storage","activeTab", "tabs"],
   "background": {
     "scripts": ["background.js","node_modules/identicon.js/identicon.js"]
   },
- 
-  "browser_action": {
-    "default_icon": {
-      "16": "icons/page-16.png",
-      "32": "icons/page-32.png"
-    }
+  "page_action": {
+    "browser_style": true
+
   }
 
 }

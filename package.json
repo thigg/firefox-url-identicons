@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "A firefox addon to display identicons based on the hostname",
   "dependencies": {
+    "identicon.js": "^2.3.3",
     "web-ext": "^2.9.1"
   },
   "repository": {

@@ -26,41 +26,55 @@ function hex(buffer) {
 }
 
 
-function listener(ev){
-	if(ev.parentFrameId !== -1)return;
-	let name= new URL(ev.url).hostname;
-    console.log(name)
+function createIdenticon(id) {
+    var gettingActiveTab = browser.tabs.query({active: true, currentWindow: true});
+    gettingActiveTab.then((tabs) => {
+        let name = new URL(tabs[0].url).hostname;
+        console.log(name)
 
-    sha256(name).then(function(name) {
+        sha256(name).then(function (name) {
 
-        var icon = new Identicon(name, {
-            format: 'svg', size:64, margin: 0
-        }  )
+            var icon = new Identicon(name, {
+                format: 'svg', size: 64, margin: 0
+            })
 
-        var img = new Image();
-        img.src = "data:image/svg+xml;base64," + icon.toString();
+            var img = new Image();
+            img.src = "data:image/svg+xml;base64," + icon.toString();
 
-        var canvas = document.createElement('canvas');
-        var context = canvas.getContext('2d');
-        canvas.width = 64;
-        canvas.height = 64;
-        context.drawImage(img, 0, 0 );
-        var myData = context.getImageData(0, 0, 64, 64);
+            var canvas = document.createElement('canvas');
+            var context = canvas.getContext('2d');
+            canvas.width = 64;
+            canvas.height = 64;
+            context.drawImage(img, 0, 0);
+            var myData = context.getImageData(0, 0, 64, 64);
 
-        browser.browserAction.setIcon(
-            {
-                imageData : {
-                    64:myData
-                }
-            }       // object
-        )
+            browser.pageAction.setIcon(
+                {
+                    tabId: id,
+                    imageData: {
+                        64: myData
+                    }
+                }       // object
+            )
+            console.log("Showing Identicon")
+            browser.pageAction.show(id)
+        });
     });
 
 }
 
-browser.webNavigation.onCommitted.addListener(
+function listener(ev){
+    console.log(ev)
+	if(ev.frameId !== 0)return;
+	if(ev.transitionType == "auto_subframe")return;
+    createIdenticon(ev);
+
+}
+
+browser.tabs.onUpdated.addListener(createIdenticon)
+/*browser.webNavigation.onCommitted.addListener(
   listener, {
 
         url: [{schemes: ["http", "https"]}]}
 
-);
+);*/
