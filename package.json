@@ -1,6 +1,6 @@
 {
-  "name": "identicon-firefox-addon",
-  "version": "0.0.1",
+  "name": "identicon-addon",
+  "version": "0.1c",
   "description": "A firefox addon to display identicons based on the hostname",
   "dependencies": {
     "identicon.js": "^2.3.3",

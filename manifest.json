@@ -1,16 +1,13 @@
 {
-
-  "description": "Demonstrating toolbar buttons",
+  "description": "Adds a identicon to the url bar which is based on the hostname.",
   "manifest_version": 2,
-  "name": "button-demo",
-  "version": "1.0",
+  "name": "url-identicon",
+  "version": "0.1c",
   "permissions": ["webNavigation", "storage","activeTab", "tabs"],
   "background": {
-    "scripts": ["background.js","node_modules/identicon.js/identicon.js"]
+    "scripts": ["background.js","identicon.js"]
   },
   "page_action": {
     "browser_style": true
-
   }
-
 }
